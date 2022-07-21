@@ -1,0 +1,6 @@
+
+.home {
+    @include container;
+    overflow-x: hidden;
+    @include bgImage;
+}

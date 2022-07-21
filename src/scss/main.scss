@@ -1,8 +1,16 @@
 // Main Imports
 @import './base/colors'; //override bootstrap main colors
+@import './base/mixins'; 
+@import './base/heights';
+
 
 // Modules
-@import './module/burgerMenu'; //override bootstrap main variables
+@import './module/burgerMenu'; 
 @import './module/navigation'; 
+@import './module/slider'; 
+
+// Layout
+@import './layout/home';
 
 @import './vendor/bootstrap';
+@import './base/defaults';

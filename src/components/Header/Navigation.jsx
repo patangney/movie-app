@@ -10,7 +10,7 @@ function Navigation () {
   const expand = 'lg'
   return (
     <Fragment>
-      <Navbar key={expand} variant="dark" bg='dark' expand={expand} className='mb-3'>
+      <Navbar sticky="top" key={expand} variant="dark" bg='dark' expand={expand} className='mb-3'>
         <Container fluid>
           <LinkContainer to={'/'}>
             <Navbar.Brand href='/'>

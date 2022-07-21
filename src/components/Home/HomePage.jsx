@@ -1,8 +1,12 @@
 import React from 'react'
+import { Discover } from '../index.js'
+
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <main className='home'>
+      <Discover />
+    </main>
   )
 }
 
