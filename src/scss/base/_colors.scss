@@ -1,0 +1,21 @@
+// Theme
+
+$primary: #048A81;
+$secondary: #090b13;
+$danger: #990033;
+$slate: #6F7D8C;
+$warning: #E3B505;
+$info: #007991;
+$green: #9BC53D;
+$dark: #090b13;
+$light: #F1F7ED;
+
+$theme-colors: (
+    "primary": $primary,
+    "danger": $danger,
+    "secondary": $slate,
+    "info": $info,
+    "success": $green,
+    "warning": $warning,
+    "dark": $dark,
+);
