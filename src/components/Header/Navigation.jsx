@@ -1,8 +1,31 @@
 import React, {Fragment} from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
+import LogoWhite from '../../assets/Logo/logo-white.svg'
+import CanvasNavigation from './CanvasNavigation'
 
-const Navigation = () => {
+function Navigation () {  
+ 
+  const expand = 'lg'
   return (
-    <div>Navigation</div>
+    <Fragment>
+      <Navbar key={expand} variant="dark" bg='dark' expand={expand} className='mb-3'>
+        <Container fluid>
+          <LinkContainer to={'/'}>
+            <Navbar.Brand href='/'>
+              <img
+                src={LogoWhite}
+                width='150'
+                className='d-inline-block align-top mr-5'
+              />
+            </Navbar.Brand>
+          </LinkContainer>
+          {/* ---- ./logo ---- */}          
+          <CanvasNavigation />    
+        </Container>
+      </Navbar>
+    </Fragment>
   )
 }
 

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+import Navigation from './Navigation'
 
 const Header = () => {
   return (
-    <div>Header</div>
+    <Fragment>
+        <Navigation />
+    </Fragment>
   )
 }
 
