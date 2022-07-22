@@ -15,9 +15,12 @@ export const movieAPI = createApi({
       getDiscoveryMovies: builder.query({
         query: () => `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
       }),
+      getReviews: builder.query({
+        query: (movieId) => `movie/${movieId}/reviews?api_key=${API_KEY}`
+      }),
     }),
   })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery } = movieAPI
+export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery } = movieAPI
