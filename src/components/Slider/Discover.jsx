@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
-
 import { nanoid } from '@reduxjs/toolkit'
-import { BACKDROP_url } from '../../api'
 import { useGetDiscoveryMoviesQuery } from '../../services/themoviedbAPI'
 
 import Spinner from '../Spinner/Spinner'
-
 // Import css files
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+
+const BACKDROP_url = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
 
 const Discover = () => {
   const { data, isLoading, isFetching, isError } = useGetDiscoveryMoviesQuery()
