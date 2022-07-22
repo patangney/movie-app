@@ -12,13 +12,30 @@ export const Discover_URL = `https://api.themoviedb.org/3/discover/movie?api_key
 
 //export const detail_url= `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=14ccdb96456935bbb41591e99697d262&language=en-US`
 export const img_url = 'http://image.tmdb.org/t/p/w500'
-export const BACKDROP = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
+export const BACKDROP_url = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
 
 
-export const fetchSingleMovie = movieId =>
+export const MovieDetails_URL = movieId => `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+
+
+
+
+export const client = BASE_API
+
+export const fetchMovie = movieId => `/movie/${movieId}?api_key=${API_KEY}`
+
+
+
+export const fetchSingleMovie = movieId => {
+
   BASE_AXIOS.get(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
   )
+  
+}
+  
+
+  // fetchSingleMovie('507086')
 
 export const fetchSingleMovieCredits = movieId =>
   BASE_AXIOS.get(

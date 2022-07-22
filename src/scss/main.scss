@@ -8,9 +8,11 @@
 @import './module/burgerMenu'; 
 @import './module/navigation'; 
 @import './module/slider'; 
+@import './module/spinner';
 
 // Layout
 @import './layout/home';
+@import './layout/details';
 
 @import './vendor/bootstrap';
 @import './base/defaults';
