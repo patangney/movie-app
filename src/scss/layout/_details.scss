@@ -4,7 +4,13 @@
         padding: 0 calc(3.5vw + 5px);
         position: relative;
 
-    }    
+    }
+
+    &__image-title {
+        img {
+            max-height: 300px;
+        }
+    }
 
     &__image-bg {
         position: fixed;
@@ -28,6 +34,98 @@
         @include overlay;
     }
 
+    &__info {
+        &--item {
+            margin-bottom: 1.5rem;
+        }
+
+        &--text {
+            font-size: 20px;
+            letter-spacing: -.1px;
+            line-height: 1.6;
+        }
+    }
+
+    .consensus {
+        width: 68px;
+        height: 68px;
+        display: inline-block;
+        transition: transform .2s;
+        transform: scale(1);
     
 
+        &__outer_ring {
+            display: inline-block;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            padding: 4px;
+            background-color: #081c22;
+        }
+
+        &__user_score_chart {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            bottom: 5px;
+        }
+
+        &__percent {
+            
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            
+        }
+
+    }
+}
+
+.cucmzr {
+    
+    margin-right: 40px;
+    padding-bottom: 15px;
+    position: relative;
+    transition: all 350ms ease 0s;
+}
+
+.cucmzr:after {
+    background-color: rgb(249, 249, 249);
+    border-radius: 50px 50px 0px 0px;
+    content: "";
+    height: 3px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 200ms ease 0s;
+}
+
+.nav-tabs {
+    --bs-nav-tabs-border-width: 0px;
+    --bs-nav-tabs-border-color: transparent;
+    --bs-nav-tabs-border-radius: none;
+    --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef #dee2e6;
+    --bs-nav-tabs-link-active-color: #ffffff;
+    --bs-nav-tabs-link-active-bg: transparent;
+    --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #fff;
+    border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);   
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.4;
+
+    & button {
+        text-transform: uppercase;
+
+    }
+    
+    
+    
 }

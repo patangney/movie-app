@@ -1,5 +1,6 @@
 // Main Imports
 @import './base/colors'; //override bootstrap main colors
+@import './vendor/bootstrap';
 @import './base/mixins'; 
 @import './base/heights';
 
@@ -10,9 +11,10 @@
 @import './module/slider'; 
 @import './module/spinner';
 
+
 // Layout
 @import './layout/home';
 @import './layout/details';
 
-@import './vendor/bootstrap';
+
 @import './base/defaults';
