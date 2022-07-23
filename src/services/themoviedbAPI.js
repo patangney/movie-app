@@ -29,4 +29,4 @@ export const movieAPI = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery, useGetCreditsQuery, useGetTrendingQuery } = movieAPI
+export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery, useGetCreditsQuery, useGetTrendingMovieQuery } = movieAPI

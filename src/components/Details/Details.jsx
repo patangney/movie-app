@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
-import { useGetMovieByIdQuery, movieAPI } from '../../services/themoviedbAPI'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import React from 'react'
+import { useGetMovieByIdQuery } from '../../services/themoviedbAPI'
+import { Chart as ChartJS, ArcElement } from 'chart.js'
+import { nanoid } from '@reduxjs/toolkit'
 import { Doughnut } from 'react-chartjs-2'
 import { useParams } from 'react-router-dom'
 import TavNavigation from './TavNavigation'
@@ -9,8 +10,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
+import CurrencyFormat from 'react-currency-format'
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement)
 
 const Details = () => {
   const params = useParams()
@@ -75,64 +77,95 @@ const Details = () => {
                 </div>
               </Col>
               <Col xs={12} md={8}>
-                <h1 className='data-title fs-1'>{movie.original_title}</h1>
-                <h3 className='data-title fs-5 '>"{movie.tagline}"</h3>
-                <div className='details__info'>
-                  <div className='details__info-item'>
-                    <h5 className='details__info-title'>
-                      Release Date: {movieDateString}
-                    </h5>
-                  </div>
-                  <div className='details__info-item'>
-                    <h5 className='details__info-title'>
-                      Genre
-                      {movie.genres.map(genre => (
-                        <span class='my-1 ms-2 me-1 badge bg-warning text-dark'>
-                          {genre.name}
-                        </span>
-                      ))}
-                    </h5>
-                    <Stack direction='horizontal' gap={3}>
-                      <div className='bg-light border'>First item</div>
-                      <div className='bg-light border '>Second item</div>
-                      <div className='bg-light border'>Third item</div>
-                    </Stack>
+                <h1 className='fs-1'>{movie.original_title}</h1>
+                <h3 className='fs-5 '>"{movie.tagline}"</h3>
 
-                    {/* doughnut chart */}
-                    <div className='consensus'>
-                      <div className='consensus__outer_ring'>
-                        <div className='consensus__user_score_chart'>
-                          <Doughnut data={userRating} />
-                          <div className='consensus__percent'>
-                            Rating {userRatingAbs}{' '}
-                          </div>
-                        </div>
+                <h5>Release Date: {movieDateString}</h5>
+
+                <h5>
+                  Genre
+                  {movie.genres.map(genre => (
+                    <span key={nanoid()} className='my-1 ms-2 me-1 badge bg-warning text-dark'>
+                      {genre.name}
+                    </span>
+                  ))}
+                </h5>
+
+                {/* doughnut chart */}
+                <Container>
+                  <Row className="align-items-start">
+                    <Col xs={12} md={2}>
+                    <div className='consensus mb-5'>
+                    <div className='consensus__outer_ring'>
+                      <Doughnut data={userRating} />
                       </div>
+                      Rating {userRatingAbs}{' '}
                     </div>
+                    
+                    </Col>
+                    <Col xs={12} md={2}>
+                   
+                    </Col>
+                  </Row>
+                </Container>
+                
+                
+                  
+
+                <Stack direction='horizontal' gap={3}>
+                <div>
+                    Budget:{' '}
+                    <CurrencyFormat
+                      value={movie.budget}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      prefix={'$'}
+                    />
                   </div>
-                </div>
+                  <div className="vr" />
+                  <div>
+                    Revenue:{' '}
+                    <CurrencyFormat
+                      value={movie.revenue}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      prefix={'$'}
+                    />
+                  </div>
+                  
+            
+                </Stack>
+                <Stack direction='horizontal' gap={3}>
+                  <div>
+                    Runtime:{' '}
+                    <span className='text-white'>
+                      {movie.runtime} minutes
+                    </span>
+                  </div>
+                </Stack>
               </Col>
             </Row>
           </Container>
-          <div className='container'>
-            <div className='row justify-content-start'>
-              <div className='col-md-8'>
+          <Container>
+            <Row>
+              <Col xs={12} md={8}>
                 <p className={isFetching ? <Spinner /> : 'details__info--text'}>
                   {movie.overview}
                 </p>
-              </div>
-            </div>
-          </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
         <div className='navigation'>
-          <div className='container'>
-            <div className='row justify-content-start'>
-              <div className='col'>
+          <Container>
+            <Row>
+              <Col xs={12} md={12}>
                 <TavNavigation />
-              </div>
-            </div>
+              </Col>
+            </Row>
+          </Container>
           </div>
-        </div>
+          
       </div>
     )
   }

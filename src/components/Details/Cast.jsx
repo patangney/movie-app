@@ -21,7 +21,7 @@ const Cast = () => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 10,

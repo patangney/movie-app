@@ -16,13 +16,12 @@ const Reviews = () => {
     isFetching,
     isError
   } = movieAPI.endpoints.getReviews.useQuery(params.id)
-  let movieReviews = data ? data : {}
-  
+  let movieReviews = data ? data : {}  
 
   if (isError) return <div>Error!</div>
   if (isLoading && !data) return <Spinner />
 
-  if (movieReviews.length === 0) {
+  if (movieReviews.results.length === 0 ) {
     return (
       <div className='discover my-5'>
         <h1>No Reviews found</h1>
