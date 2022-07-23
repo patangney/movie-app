@@ -1,8 +1,7 @@
 import React from 'react'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-import {Cast, Reviews} from './index'
-
+import { Cast, Reviews, Collection, Trending } from './index'
 
 export const Sonnet = () => {
   return (
@@ -13,27 +12,26 @@ export const Sonnet = () => {
 }
 
 const TavNavigation = () => {
-    return (
-      <Tabs
-        defaultActiveKey='cast'
-        id='justify'
-        className='bottom-border mb-3 my-5'
-      >
-        <Tab eventKey='cast' title='Cast'>
+  return (
+    <Tabs
+      defaultActiveKey='cast'
+      id='justify'
+      className='bottom-border mb-3 my-5'
+    >
+      <Tab eventKey='cast' title='Cast'>
         <Cast />
-        </Tab>
-        <Tab eventKey='reviews' title='Reviews'>
-          <Reviews />
-        </Tab>
-        <Tab eventKey='suggestions' title='Suggestions'>
-          <Sonnet />
-        </Tab>
-        <Tab eventKey='collection' title='Collection'>
-          <Sonnet />
-        </Tab>
-      </Tabs>
-    )
-  }
-
+      </Tab>
+      <Tab eventKey='reviews' title='Reviews'>
+        <Reviews />
+      </Tab>
+      <Tab eventKey='trending' title='Trending'>
+        <Trending />
+      </Tab>
+      <Tab eventKey='collection' title='Collection'>
+        <Collection />
+      </Tab>
+    </Tabs>
+  )
+}
 
 export default TavNavigation

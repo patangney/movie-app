@@ -17,7 +17,7 @@ const Reviews = () => {
     isError
   } = movieAPI.endpoints.getReviews.useQuery(params.id)
   let movieReviews = data ? data : {}
-  console.log(movieReviews.results, 'movieReviews')
+  
 
   if (isError) return <div>Error!</div>
   if (isLoading && !data) return <Spinner />
@@ -43,12 +43,8 @@ const Reviews = () => {
                         </p>
                     </div>
                 </Col>
-             
-              
             </Row>
         ))}
-        
-       
         </Container>
       </div>
     )

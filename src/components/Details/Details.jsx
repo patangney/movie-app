@@ -5,6 +5,11 @@ import { Doughnut } from 'react-chartjs-2'
 import { useParams } from 'react-router-dom'
 import TavNavigation from './TavNavigation'
 import Spinner from '../Spinner/Spinner'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Stack from 'react-bootstrap/Stack'
+
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 const Details = () => {
@@ -23,19 +28,15 @@ const Details = () => {
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
   const poster_url = 'https://image.tmdb.org/t/p/w500'
 
-  
-
   if (isError) return <div>Error!</div>
   if (isLoading && !data) return <Spinner />
 
   const userRatingAbs = Math.round(
     Math.abs(movie.vote_average, 10 - movie.vote_average)
   )
-  console.log(userRatingAbs, 'userRatingAbs')
 
   // Convert Date object to string
   const movieDate = movie.release_date
-  console.log(movieDate, 'movieDate')
   const parts = movieDate.split('-')
   const mydate = new Date(parts[0], parts[1] - 1, parts[2])
   const movieDateString = mydate.toDateString()
@@ -62,9 +63,9 @@ const Details = () => {
     return (
       <div className={isFetching ? <Spinner /> : 'loaded'}>
         <div className='details'>
-          <div className='container my-5'>
-            <div className='row align-items-start'>
-              <div className='col-md-4'>
+          <Container className='my-5'>
+            <Row className='align-items-start'>
+              <Col xs={12} md={3}>
                 <div className='details__image-title'>
                   <img src={`${poster_url}${movie.poster_path}`} alt='' />
                 </div>
@@ -72,25 +73,31 @@ const Details = () => {
                   <img src={`${BACKDROP_url}${movie.backdrop_path}`} alt='' />
                   <div className='details__image-overlay'></div>
                 </div>
-              </div>
-              <div className='col'>
-                <h1 className='data-title'>{movie.original_title}</h1>
-                <h3 className='data-title'>{movie.tagline}</h3>
+              </Col>
+              <Col xs={12} md={8}>
+                <h1 className='data-title fs-1'>{movie.original_title}</h1>
+                <h3 className='data-title fs-5 '>"{movie.tagline}"</h3>
                 <div className='details__info'>
                   <div className='details__info-item'>
                     <h5 className='details__info-title'>
-                      Release date: {movieDateString}
+                      Release Date: {movieDateString}
                     </h5>
                   </div>
                   <div className='details__info-item'>
-                    <h3 className='details__info-title'>Genre:</h3>
-                    <p
-                      className={
-                        isFetching ? <Spinner /> : 'details__info-text'
-                      }
-                    >
-                      {movie.genres.map(genre => genre.name).join(', ')}
-                    </p>
+                    <h5 className='details__info-title'>
+                      Genre
+                      {movie.genres.map(genre => (
+                        <span class='my-1 ms-2 me-1 badge bg-warning text-dark'>
+                          {genre.name}
+                        </span>
+                      ))}
+                    </h5>
+                    <Stack direction='horizontal' gap={3}>
+                      <div className='bg-light border'>First item</div>
+                      <div className='bg-light border '>Second item</div>
+                      <div className='bg-light border'>Third item</div>
+                    </Stack>
+
                     {/* doughnut chart */}
                     <div className='consensus'>
                       <div className='consensus__outer_ring'>
@@ -104,12 +111,11 @@ const Details = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            {/* container-fluid */}
-          </div>
+              </Col>
+            </Row>
+          </Container>
           <div className='container'>
-            <div className='row row justify-content-start'>
+            <div className='row justify-content-start'>
               <div className='col-md-8'>
                 <p className={isFetching ? <Spinner /> : 'details__info--text'}>
                   {movie.overview}

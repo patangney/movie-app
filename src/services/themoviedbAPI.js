@@ -21,9 +21,12 @@ export const movieAPI = createApi({
       getCredits: builder.query({
         query: (movieId) => `movie/${movieId}/credits?api_key=${API_KEY}`
       }),
+      getTrendingMovie: builder.query({
+        query: () => `trending/movie/day?api_key=${API_KEY}`
+      })
     }),
   })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery } = movieAPI
+export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery, useGetCreditsQuery, useGetTrendingQuery } = movieAPI

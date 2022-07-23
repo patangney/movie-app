@@ -12,6 +12,13 @@ $green: #9BC53D;
 $dark: #090b13;
 $light: #F1F7ED;
 $transparent: rgba(255, 255, 255, 0);
+$white: #fff;
+$black: #000;
+$bg-overlay: rgba(15, 33, 45, 0.461);
+
+.bg-overlay {
+  background-color: $bg-overlay;
+}
 
 $theme-colors: (
     "primary": $primary,
