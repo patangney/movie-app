@@ -23,8 +23,7 @@ const Details = () => {
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
   const poster_url = 'https://image.tmdb.org/t/p/w500'
 
-  const getReviews = movieAPI.endpoints.getReviews.useQuery(params.id)
-  console.log(getReviews, 'getReviews')
+  
 
   if (isError) return <div>Error!</div>
   if (isLoading && !data) return <Spinner />
@@ -65,7 +64,7 @@ const Details = () => {
         <div className='details'>
           <div className='container my-5'>
             <div className='row align-items-start'>
-              <div className='col-md-6'>
+              <div className='col-md-4'>
                 <div className='details__image-title'>
                   <img src={`${poster_url}${movie.poster_path}`} alt='' />
                 </div>

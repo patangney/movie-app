@@ -18,6 +18,9 @@ export const movieAPI = createApi({
       getReviews: builder.query({
         query: (movieId) => `movie/${movieId}/reviews?api_key=${API_KEY}`
       }),
+      getCredits: builder.query({
+        query: (movieId) => `movie/${movieId}/credits?api_key=${API_KEY}`
+      }),
     }),
   })
 
