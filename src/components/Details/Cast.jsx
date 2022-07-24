@@ -4,6 +4,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { useParams, Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner'
 import Slider from 'react-slick'
+import Container from 'react-bootstrap/Container'
 // Import css files
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -23,8 +24,8 @@ const Cast = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 10,
-    slidesToScroll: 10,
+    slidesToShow: 8 ,
+    slidesToScroll: 8,
     autoplay: true,
     responsive: [
       {
@@ -65,14 +66,15 @@ const Cast = () => {
     )
   } else {
     return (
-      <Slider {...settings} className='my-5'>
+      <div className="cast">
+        <Slider {...settings} className='my-5'>
         {castCredits.cast.map(cast => (
-          <div className='slider__wrapper' key={nanoid()}>
+          <div className='slider__wrapper castImage' key={nanoid()}>
             <div className='slider__item'>
               <Link className='text-white' to={`/cast/${cast.id}`}>
                 <img
                   style={{ minHeight: 200 }}
-                  className='slider__img'
+                  className='slider__img hoverEffect'
                   src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null // prevents looping
@@ -81,15 +83,16 @@ const Cast = () => {
                   alt={cast.name}
                 />
               </Link>
-              <div className='slider__content'>
-                <h5 className='slider__title slider__title--name'>
+              <h5 className='slider__title--name'>
                   {cast.name}
                 </h5>
-              </div>
             </div>
           </div>
         ))}
       </Slider>
+
+      </div>
+      
     )
   }
 }

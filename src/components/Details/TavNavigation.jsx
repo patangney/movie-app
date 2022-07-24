@@ -1,7 +1,7 @@
 import React from 'react'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-import { Cast, Reviews, Collection, Trending } from './index'
+import { Cast, Reviews, Collection, Trending, SimilarMovies } from './index'
 
 export const Sonnet = () => {
   return (
@@ -23,6 +23,9 @@ const TavNavigation = () => {
       </Tab>
       <Tab eventKey='reviews' title='Reviews'>
         <Reviews />
+      </Tab>
+      <Tab eventKey='similar' title='Similar'>
+        <SimilarMovies />
       </Tab>
       <Tab eventKey='trending' title='Trending'>
         <Trending />
