@@ -85,7 +85,7 @@ const SimilarMovies = () => {
               <Link className='text-white' to={`/details/${similar.id}`}>
                 <img
                   style={{ minHeight: 200 }}
-                  className='slider__img hoverEffect'
+                  className='slider__img hoverEffect slider__title--box'
                   src={`${BACKDROP_url}${similar.backdrop_path}`}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null // prevents looping
@@ -93,7 +93,7 @@ const SimilarMovies = () => {
                   }}
                   alt={similar.title}
                 />
-                  <h5 className=''>
+                  <h5 className='slider__title--box'>
                     {similar.title || similar.name}
                   </h5>
                 

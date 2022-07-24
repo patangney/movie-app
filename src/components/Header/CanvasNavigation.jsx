@@ -4,7 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import {FaAppStore} from 'react-icons/fa';
 import { FaHome, FaStar } from "react-icons/fa";
 
 
@@ -15,13 +14,7 @@ function CanvasNavigation() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  const ExploreKillarney = [
-    {
-      name: 'Eat & Drink',
-      icon: FaAppStore,
-      routerPath: '/blog/Eat&Drink/'
-    }
-  ]
+  
 
   return (
     <Fragment>
@@ -39,12 +32,12 @@ function CanvasNavigation() {
       </svg>
       </div>      
     
-      <Navbar.Offcanvas show={show ? show: undefined} onHide={handleClose} responsive="lg">
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
+      <Navbar.Offcanvas className='bg-dark' show={show ? show: undefined} onHide={handleClose} responsive={expand}>
+        <Offcanvas.Header className='bg-dark' closeButton>
+          <Offcanvas.Title className='bg-dark'>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-        <Nav className='me-auto nav-theme'>
+        <Nav className='me-auto bg-dark nav-theme offcanvas-body'>
                 <LinkContainer to='/'>
                   <Nav.Link active><FaHome className='me-1' /><span>Home</span></Nav.Link>
                 </LinkContainer>

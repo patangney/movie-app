@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Raleway&display=swap');
 @import './base/colors'; //override bootstrap main colors
 @import './vendor/bootstrap';
+@import './base/defaults';
 @import './base/mixins'; 
 @import './base/heights';
 
@@ -18,4 +19,4 @@
 @import './layout/details';
 
 
-@import './base/defaults';
+

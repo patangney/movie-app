@@ -64,12 +64,12 @@ const Details = () => {
   } else {
     return (
       <div className={isFetching ? <Spinner /> : 'loaded'}>
-        <div className='details'>
-          <Container className='my-5'>
+        <div className='details ms-5 me-5'>
+          <Container fluid className='my-5'>
             <Row className='align-items-start'>
-              <Col xs={12} md={3}>
+              <Col xs={12} md={2}>
                 <div className='details__image-title'>
-                  <img src={`${poster_url}${movie.poster_path}`} alt='' />
+                  <img className='shadow rounded' src={`${poster_url}${movie.poster_path}`} alt='' />
                 </div>
                 <div className='details__image-bg'>
                   <img src={`${BACKDROP_url}${movie.backdrop_path}`} alt='' />
@@ -146,7 +146,7 @@ const Details = () => {
               </Col>
             </Row>
           </Container>
-          <Container>
+          <Container fluid>
             <Row>
               <Col xs={12} md={8}>
                 <p className={isFetching ? <Spinner /> : 'details__info--text'}>
@@ -156,8 +156,8 @@ const Details = () => {
             </Row>
           </Container>
         </div>
-        <div className='navigation'>
-          <Container>
+        <div className='navigation ms-5 me-5'>
+          <Container fluid>
             <Row>
               <Col xs={12} md={12}>
                 <TavNavigation />

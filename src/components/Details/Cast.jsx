@@ -67,7 +67,7 @@ const Cast = () => {
   } else {
     return (
       <div className="cast">
-        <Slider {...settings} className='my-5'>
+        <Slider {...settings} className=''>
         {castCredits.cast.map(cast => (
           <div className='slider__wrapper castImage' key={nanoid()}>
             <div className='slider__item'>

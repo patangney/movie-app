@@ -33,7 +33,7 @@ const Trending = () => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -92,7 +92,7 @@ const Trending = () => {
                 />
               </Link>
              
-                <h5>
+                <h5 className='slider__title--box'>
                   {trending.title || trending.name}
                 </h5>
          

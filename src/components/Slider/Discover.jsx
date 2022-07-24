@@ -20,7 +20,7 @@ const Discover = () => {
   let movies = [...data.results]
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -48,9 +48,10 @@ const Discover = () => {
                     alt={movie.original_title}
                   />
                   <div className='slider__content'>
-                    <h3 className='slider__title'>{movie.original_title}</h3>
+                    
                   </div>
                 </Link>
+                <h5 className='slider__title--box'>{movie.original_title}</h5>
               </div>
             </div>
           ))}

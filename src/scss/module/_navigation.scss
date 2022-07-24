@@ -1,4 +1,13 @@
+.offcanvas-body {
+    background-color: $dark;
+    
+}
+
 .nav-theme {
+
+    &.offcanvas-body {        
+        margin-left: 1em;
+    }
     margin-left: 7em;
 
      a {
