@@ -3,5 +3,12 @@
     @include container;
     overflow-x: hidden;
     @include bgImage;
+
+    &_title {
+        font-size: 20px;
+        letter-spacing: .11px;
+        line-height: 1.4;
+    }
 }
+
 

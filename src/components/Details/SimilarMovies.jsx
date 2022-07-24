@@ -25,7 +25,7 @@ const SimilarMovies = () => {
   if (isError) return <div>Error!</div>
   if (isLoading && !data) return <Spinner />
 
-  console.log(responseData, 'similarMovies')
+  // console.log(responseData, 'similarMovies')
 
   const settings = {
     dots: false,

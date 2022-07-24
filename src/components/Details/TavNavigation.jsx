@@ -1,7 +1,7 @@
 import React from 'react'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-import { Cast, Reviews, Collection, Trending, SimilarMovies } from './index'
+import { Cast, Reviews, Collection, SimilarMovies } from './detailsIndex'
 
 export const Sonnet = () => {
   return (

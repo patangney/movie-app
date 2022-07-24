@@ -1,5 +1,5 @@
-import React from 'react'
-import { useGetMovieByIdQuery } from '../../services/themoviedbAPI'
+import React, {useState} from 'react'
+import { movieAPI, useGetMovieByIdQuery, useGetMovieVideoQuery } from '../../services/themoviedbAPI'
 import { Chart as ChartJS, ArcElement } from 'chart.js'
 import { nanoid } from '@reduxjs/toolkit'
 import { Doughnut } from 'react-chartjs-2'
@@ -12,26 +12,44 @@ import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
 import CurrencyFormat from 'react-currency-format'
 
+
 ChartJS.register(ArcElement)
+
+
 
 const Details = () => {
   const params = useParams()
-  console.log(params, 'params')
-  const { data, isLoading, isFetching, isError } = useGetMovieByIdQuery(
-    params.id
-  )
-  console.log(data, 'data from useGetMovieByIdQuery ')
 
-  let movie = data ? data : {}
+  const GetVideos = movieId => {
+    const { data = [] } = movieAPI.endpoints.getMovieVideo.useQuery(movieId)
+    const getMovieTrailer = data.results ? data.results : []
+    console.log(getMovieTrailer)
+   
+  }
 
-  const isEmpty = Object.keys(movie).length === 0
+ 
 
-  const BACKDROP_url =
+
+  
+  
+  // console.log(params, 'params')
+  const { data, isLoading, isFetching, isError } = useGetMovieByIdQuery(params.id)
+  // console.log(data, 'data from useGetMovieByIdQuery ')
+
+    let movie = data ? data : {}
+    const isEmpty = Object.keys(movie).length === 0
+
+    
+    
+    const BACKDROP_url =
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
-  const poster_url = 'https://image.tmdb.org/t/p/w500'
+    const poster_url = 'https://image.tmdb.org/t/p/w500'
+    
+    if (isError) return <div>Error!</div>
+    if (isLoading && !data) return <Spinner /> 
 
-  if (isError) return <div>Error!</div>
-  if (isLoading && !data) return <Spinner />
+       
+   
 
   const userRatingAbs = Math.round(
     Math.abs(movie.vote_average, 10 - movie.vote_average)

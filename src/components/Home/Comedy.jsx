@@ -44,7 +44,7 @@ const settings = {
   ]
 }
 
-const Trending = () => {
+const Comedy = () => {
   const BACKDROP_url =
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
   
@@ -53,13 +53,14 @@ const Trending = () => {
     isLoading,
     isFetching,
     isError
-  } = movieAPI.endpoints.getTrendingMovie.useQuery()
+  } = movieAPI.endpoints.getComedyMovies.useQuery()
   if (isLoading && !data) return <Spinner />
   if (isError) return <div>Error!</div>
 
-  const trendingNow = data.results ? data.results : []
-  const isEmpty = Object.keys(trendingNow).length === 0
-  // const topTenTrending = trendingNow.results.slice(0, 10)
+  const comedyNow = data.results ? data.results : []
+  const isEmpty = Object.keys(comedyNow).length === 0
+  console.log(comedyNow, 'comedyNow')
+  // const topTenTrending = comedyNow.results.slice(0, 10)
 
   if (isEmpty) {
     return (
@@ -71,7 +72,7 @@ const Trending = () => {
     return (
       <div className={isFetching ? <Spinner /> : 'loaded'}>
         <Slider {...settings} className='my-5'>
-          {trendingNow.map(trending => (
+          {comedyNow.map(trending => (
             <div className='slider__wrapper' key={nanoid()}>
               <div className='slider__item'>
                 <Link className='text-white' to={`/details/${trending.id}`}>
@@ -99,4 +100,4 @@ const Trending = () => {
   }
 }
 
-export default Trending
+export default Comedy
