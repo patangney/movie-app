@@ -1,0 +1,66 @@
+.viewers {
+    margin-top: 30px;
+
+    &__container {
+        padding: 0 0 26px;
+        display: grid;
+        gap: 25px;
+        padding: 30px 0px 26px;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (max-width: 576px) {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+       
+    }
+
+    &__wrapper  {
+        padding-top: 56.25%;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 5px;
+        @include border(3px);
+        @include box-shadow;   
+        @include transition;
+
+        img {
+            inset: 0px;
+            display: block;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            position: absolute;
+            @include transition-opacity;
+            width: 100%;
+            z-index: 1;
+            top: 0;
+
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        &:hover {
+            @include box-shadow;
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+
+            video {
+                opacity: 1;
+            }
+        }
+
+    }
+
+}

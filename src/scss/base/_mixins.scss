@@ -11,9 +11,29 @@
   @mixin border($size) {
     border: $size solid rgba(249, 249, 249, 0.1);
   }
+
+  @mixin border-hover($size) {
+    border: $size solid rgba(249, 249, 249, 0.8);
+  }
   
   @mixin transition() {
     transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  }
+
+  @mixin transition-opacity() {
+    transition: all 500ms ease-in-out 0.1s;
+  }
+
+  @mixin transition-transform() {
+    transition: all 500ms ease-in-out 0.1s;
+  }
+
+  @mixin br-5() {
+    border-radius: 5px;
+  }
+  @mixin hw-100() {
+    height: 100%;
+    width: 100%;
   }
   
   @mixin hover() {

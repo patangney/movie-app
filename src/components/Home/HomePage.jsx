@@ -1,5 +1,5 @@
 import React from 'react'
-import { Discover } from '../index.js'
+import { Discover, Viewers } from '../index.js'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -15,6 +15,12 @@ const HomePage = () => {
             <Discover />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <Viewers />
+          </Col>
+        </Row>
+        
       </Container>
     </main>
   )
