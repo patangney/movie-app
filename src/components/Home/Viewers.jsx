@@ -65,6 +65,17 @@ const Viewers = () => {
                   <source src='/assets/videos/starwars.mp4' type='video/mp4' />
                 </video>
               </div>
+              <div className='viewers__wrapper'>
+                <img src='/assets/images/viewers-star.png' alt='' />
+                <video
+                  autoPlay={true}
+                  loop={true}
+                  muted={true}
+                  playsInline={true}
+                >
+                  <source src='/assets/videos/star.mp4' type='video/mp4' />
+                </video>
+              </div>
             </div>
           </div>
         </Col>

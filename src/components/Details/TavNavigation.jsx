@@ -26,10 +26,7 @@ const TavNavigation = () => {
       </Tab>
       <Tab eventKey='similar' title='Similar'>
         <SimilarMovies />
-      </Tab>
-      <Tab eventKey='trending' title='Trending'>
-        <Trending />
-      </Tab>
+      </Tab>      
       <Tab eventKey='collection' title='Collection'>
         <Collection />
       </Tab>
