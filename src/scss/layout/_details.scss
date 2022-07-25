@@ -84,6 +84,102 @@
         }
 
     }
+
+    &__controls, button {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 1rem;
+        border-radius: 4px;
+        font-size: 15px;        
+        align-items: center;
+        height: 56px;
+        border: none;
+        padding: 0 24px;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        margin-left: -1rem;
+        
+
+        &--playButton {
+            background-color: rgba(249, 249, 249);
+            margin-right: 22px;
+            &:hover {
+                background: rgb(198,198,198);
+            }
+
+        }
+
+        &--trailerButton {
+            background: rgba(0,0,0,0.3);
+            width: 180px;
+            margin-right: 22px;
+            border: 1px solid rgb(249, 249, 249) !important;
+            color: rgb(249, 249, 249);
+            &:hover {
+                background: rgba(0,0,0,0.65);                
+            }
+
+        }
+
+        &--addButton {
+            margin-right: 13px;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            border: 1px solid rgb(249, 249, 249) !important;
+            
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.237);
+
+            
+            img {
+                height: 40px;
+                position: absolute;
+                top:4px;
+                left:4px;
+                right: 0;
+                bottom: 0;                
+                
+
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+        }
+
+        &--groupWatchButton {
+            margin-right: 22px;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            border: 1px solid rgb(249, 249, 249) !important;
+            
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.237);
+
+            
+            img {
+                height: 40px;
+                position: absolute;
+                top:4px;
+                left:4px;
+                right: 0;
+                bottom: 0;                
+                
+
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+        }
+
+    }
 }
 
 .bottom-border {
