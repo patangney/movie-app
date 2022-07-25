@@ -56,7 +56,7 @@ export const movieAPI = createApi({
 })
 
 // Export hooks for usage in functional components, which are
-//https://api.themoviedb.org/3/discover/movie?api_key=f13e36f04ee1a763624cfc19b4c52584&with_genres=32328&with_watch_providers=337
+//https://api.themoviedb.org/3/movie/438148/similar?api_key=f13e36f04ee1a763624cfc19b4c52584
 // auto-generated based on the defined endpoints
 export const {
   useGetMovieByIdQuery,
