@@ -1,6 +1,6 @@
 import React from 'react'
 import { Discover, Viewers } from '../index'
-import {Action,Comedy,Trending, Upcoming, Horror} from './HomeIndex'
+import {Action,Comedy,Trending, Upcoming, Horror, Animation} from './HomeIndex'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -47,6 +47,12 @@ const HomePage = () => {
           <Col>
           <div className="home-title mt-0 mb-n5"><h4>Horror</h4></div>
             <Horror />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <div className="home-title mt-0 mb-n5"><h4>Animation</h4></div>
+            <Animation />
           </Col>
         </Row>
         
