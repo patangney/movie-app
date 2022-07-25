@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react'
-import { useGetMovieByIdQuery, movieAPI } from '../../services/themoviedbAPI'
+import { useGetMovieByIdQuery } from '../../services/themoviedbAPI'
 import { useParams, Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import { GetMovieData } from '../../utils/DataFetch'
+import { GetMovieDataById } from '../../utils/DataFetch'
 
 const Collection = () => {
   const params = useParams()
   const img_url = `https://image.tmdb.org/t/p/w1440_and_h320_multi_faces/`
   
-  const dataInfo = GetMovieData(params.id, useGetMovieByIdQuery)
+  const dataInfo = GetMovieDataById(params.id, useGetMovieByIdQuery)
   let getCollection = dataInfo.belongs_to_collection ? dataInfo.belongs_to_collection : {}
   const isEmpty = Object.keys(getCollection).length === 0  
 

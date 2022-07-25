@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 const BACKDROP_url = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
 
+
 const Discover = () => {
   const { data, isLoading, isFetching, isError } = useGetDiscoveryMoviesQuery()
 

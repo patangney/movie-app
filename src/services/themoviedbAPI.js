@@ -29,7 +29,7 @@ export const movieAPI = createApi({
         query: (movieId) => `movie/${movieId}/similar?api_key=${API_KEY}`
       }),
       getActionMovies: builder.query({
-        query: () => `discover/movie?api_key=${API_KEY}&with_genres=28&with_watch_providers=337`
+        query: () => `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&with_genres=28&with_watch_providers=337`
       }),
       getComedyMovies: builder.query({
         query: () => `discover/movie?api_key=${API_KEY}&with_genres=35&with_watch_providers=337`
@@ -44,5 +44,6 @@ export const movieAPI = createApi({
   })
 
 // Export hooks for usage in functional components, which are
+//https://api.themoviedb.org/3/discover/movie?api_key=f13e36f04ee1a763624cfc19b4c52584&with_genres=32328&with_watch_providers=337
 // auto-generated based on the defined endpoints
-export const { useGetMovieByIdQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery, useGetCreditsQuery, useGetTrendingMovieQuery, useGetSimilarMovieQuery, useGetActionMoviesQuery, useGetMovieVideoQuery } = movieAPI
+export const { useGetMovieByIdQuery, useGetActionMoviesQuery, useGetDiscoveryMoviesQuery, useGetReviewsQuery, useGetCreditsQuery, useGetTrendingMovieQuery, useGetSimilarMovieQuery, useGetMovieVideoQuery, useGetComedyMoviesQuery, useGetUpcomingMoviesQuery} = movieAPI
