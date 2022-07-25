@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { movieAPI } from '../../services/themoviedbAPI'
 import { nanoid } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
@@ -47,57 +47,57 @@ const settings = {
 const Action = () => {
   const BACKDROP_url =
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
-  
-    const {
+
+  const {
     data = [],
     isLoading,
     isFetching,
-    isError
+    isError,
+    isSuccess
   } = movieAPI.endpoints.getActionMovies.useQuery()
-  if (isLoading && !data) return <Spinner />
-  if (isError) return <div>Error!</div>
 
   const actionNow = data.results ? data.results : []
   const isEmpty = Object.keys(actionNow).length === 0
-  console.log(actionNow, 'actionNow')
-  // const topTenTrending = actionNow.results.slice(0, 10)
 
-  if (isEmpty) {
-    return (
-      <div className='discover my-5'>
-        <h1>Trending List not found</h1>
-      </div>
-    )
-  } else {
-    return (
-      <div className={isFetching ? <Spinner /> : 'loaded'}>
-        <Slider {...settings} className='my-5'>
-          {actionNow.map(trending => (
-            <div className='slider__wrapper' key={nanoid()}>
-              <div className='slider__item'>
-                <Link className='text-white' to={`/details/${trending.id}`}>
-                  <img
-                    style={{ minHeight: 200 }}
-                    className='slider__img hoverEffect'
-                    src={`${BACKDROP_url}${trending.backdrop_path}`}
-                    onError={({ currentTarget }) => {
-                      currentTarget.onerror = null // prevents looping
-                      currentTarget.src = userPlaceholder
-                    }}
-                    alt={trending.title}
-                  />
-                </Link>
+  return (
+    <Fragment>
+      {isLoading && <Spinner />}
+      {isFetching && <Spinner />}
+      {isError && <h2>Something went wrong</h2>}
+      {isSuccess && (
+        <Fragment>
+          <Slider {...settings} className='my-5'>
+            {actionNow.map(actionMovies => (
+              <div className='slider__wrapper' key={nanoid()}>
+                <div className='slider__item'>
+                  <Link
+                    className='text-white'
+                    to={`/details/${actionMovies.id}`}
+                  >
+                    <img
+                      style={{ minHeight: 200 }}
+                      className='slider__img hoverEffect'
+                      src={`${BACKDROP_url}${actionMovies.backdrop_path}`}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null // prevents looping
+                        currentTarget.src = userPlaceholder
+                      }}
+                      alt={actionMovies.title}
+                    />
+                  </Link>
 
-                <h5 className='slider__title--box'>
-                  {trending.title || trending.name}
-                </h5>
+                  <h5 className='slider__title--box'>
+                    {actionMovies.title || actionMovies.name}
+                  </h5>
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    )
-  }
+            ))}
+          </Slider>
+        </Fragment>
+      )}
+      {isEmpty && <h2>No Action Movies</h2>}
+    </Fragment>
+  )
 }
 
 export default Action
