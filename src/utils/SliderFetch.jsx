@@ -7,9 +7,8 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import userPlaceholder from '../assets/placeholder/moviePlaceholder.png'
 import { GetMovieData } from './DataFetch'
-import { settings } from './SliderSettings'
 
-const SliderFetch = queryApi => {
+const SliderFetch = (queryApi, sliderSetting) => {
   const data = GetMovieData(queryApi)
   const sliderData = data.results ? data.results : []
   const isEmpty = Object.keys(sliderData).length === 0
@@ -29,7 +28,7 @@ const SliderFetch = queryApi => {
   return (
     <Fragment>
       <Fragment>
-        <Slider {...settings} className='my-5'>
+        <Slider {...sliderSetting} className='my-5'>
           {sliderData.map(sliderInfo => (
             <div className='slider__wrapper' key={nanoid()}>
               <div className='slider__item'>
