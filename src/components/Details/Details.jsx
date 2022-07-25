@@ -16,11 +16,14 @@ import Modal from 'react-bootstrap/Modal'
 import Stack from 'react-bootstrap/Stack'
 import CurrencyFormat from 'react-currency-format'
 import Moment from 'react-moment'
-import YouTube from 'react-youtube'
+
+
+import ModalVideo from 'react-modal-video'
 
 const Details = () => {
   ChartJS.register(ArcElement)
   const [show, setShow] = useState(false)
+  const [isOpen, setOpen] = useState(false)
   const params = useParams()
   const data = GetMovieDataById(params.id, useGetMovieByIdQuery)
   const movie = data ? data : []
@@ -62,55 +65,18 @@ const Details = () => {
     ]
   }
 
-  const playTrailer = () => {
-    console.log('playTrailer')
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: 0
-      }
-    }
-    return (
-      <YouTube videoId={key} opts={opts} onReady={e => e.target.playVideo()} />
-    )
-  }
-
   if (isEmpty) return emptyData()
   else {
     return (
       <Fragment>
-        <Container fluid>
-          <Row>
-            <Col md={12}>
-              {/* {playTrailer()} */}
-              <Modal
-                show={show}
-                onHide={() => setShow(false)}
-                dialogClassName='modal-90w'
-                aria-labelledby='example-custom-modal-styling-title'
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title id='example-custom-modal-styling-title'>
-                    Custom Modal Styling
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <p>
-                    Ipsum molestiae natus adipisci modi eligendi? Debitis amet
-                    quae unde commodi aspernatur enim, consectetur. Cumque
-                    deleniti temporibus ipsam atque a dolores quisquam quisquam
-                    adipisci possimus laboriosam. Quibusdam facilis doloribus
-                    debitis! Sit quasi quod accusamus eos quod. Ab quos
-                    consequuntur eaque quo rem! Mollitia reiciendis porro quo
-                    magni incidunt dolore amet atque facilis ipsum deleniti rem!
-                  </p>
-                </Modal.Body>
-              </Modal>
-            </Col>
-          </Row>
-        </Container>
+        <ModalVideo
+          channel='youtube'
+          autoplay
+          isOpen={isOpen}
+          videoId={key}
+          onClose={() => setOpen(false)}
+        />
+
         <div className='details ms-5 me-5'>
           <Container fluid className='my-5'>
             <Row className='align-items-start'>
@@ -157,7 +123,7 @@ const Details = () => {
                       <div className='details__controls'>
                         <Stack direction='horizontal' gap={1}>
                           <button
-                            onClick={playTrailer}
+                            onClick={() => setOpen(true)}
                             className='details__controls--trailerButton'
                           >
                             <img
