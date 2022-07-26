@@ -12,7 +12,6 @@ import TavNavigation from './TavNavigation'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Modal from 'react-bootstrap/Modal'
 import Stack from 'react-bootstrap/Stack'
 import CurrencyFormat from 'react-currency-format'
 import Moment from 'react-moment'
@@ -22,7 +21,7 @@ import ModalVideo from 'react-modal-video'
 
 const Details = () => {
   ChartJS.register(ArcElement)
-  const [show, setShow] = useState(false)
+  
   const [isOpen, setOpen] = useState(false)
   const params = useParams()
   const data = GetMovieDataById(params.id, useGetMovieByIdQuery)
