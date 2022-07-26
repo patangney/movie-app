@@ -11,7 +11,7 @@ Made with love by a human <3
 (Note: This is an ongoing personal project used for learning purposes)
 
 Preview available at [tmdb.patricktangney.com/](https://tmdb.patricktangney.com/)
-
+Styling used is to mimic Disney Plus interface. [Disney Plus](https://www.disneyplus.com/)
 ## Available Scripts
 
 In the project directory, you can run:
