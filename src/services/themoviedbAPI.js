@@ -51,7 +51,11 @@ export const movieAPI = createApi({
     getAnimationMovies: builder.query({
       query: () =>
         `discover/movie?api_key=${API_KEY}&with_genres=16&with_watch_providers=337`
-    })
+    }),
+    getPeopleDetails: builder.query({
+      query: (personId) =>
+        `person/${personId}?api_key=${API_KEY}&language=en-US`
+    }),
   })
 })
 
@@ -70,5 +74,6 @@ export const {
   useGetComedyMoviesQuery,
   useGetUpcomingMoviesQuery,
   useGetHorrorMoviesQuery,
-  useGetAnimationMoviesQuery
+  useGetAnimationMoviesQuery,
+  useGetPeopleDetailsQuery
 } = movieAPI
