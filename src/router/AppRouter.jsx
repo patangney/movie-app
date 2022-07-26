@@ -9,7 +9,7 @@ const AppRouter = () => {
             <Route path="/" element={<Home />} />
             <Route path="/details/:id" element={<Details />} />
             <Route path="/collection/:id" element={<CollectionDetails />} />
-            <Route path="/cast/:id" element={<CastInfo />} />
+            <Route path="/person/:id" element={<CastInfo />} />
 
         </Routes>
     </Fragment>

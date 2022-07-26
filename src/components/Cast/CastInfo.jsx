@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { GetMovieDataById } from '../../utils/DataFetch'
 import { useGetPeopleDetailsQuery } from '../../services/themoviedbAPI'
 import { Chart as ChartJS, ArcElement } from 'chart.js'
@@ -10,13 +10,15 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
 import Moment from 'react-moment'
+import Biography from './Biography'
+import userPlaceholder from '../../assets/placeholder/user.jpg'
 
 const CastInfo = () => {
   ChartJS.register(ArcElement)
   const params = useParams()
   const data = GetMovieDataById(params.id, useGetPeopleDetailsQuery)
   const person = data ? data : []
-  console.log(person, 'person')
+  console.log(typeof(person.biography), 'person')
 
   const isEmpty = Object.keys(person).length === 0
 
@@ -56,27 +58,48 @@ const CastInfo = () => {
     return age
   }
 
+  const getBio = bio => {
+    if (typeof bio === 'string' && bio.trim().length === 0 ||  bio === null || bio === undefined) {
+        const bioInfo = document.getElementById('readMore')
+        console.log(bioInfo, 'bioInfo')
+      return 'No Biography Available'
+    } 
+
+    if (typeof bio === 'string' && bio.trim().length > 0 && bio.trim().length < 200) {
+      return bio
+    }
+
+    else {
+        return <Biography limit={200}>{bio}</Biography>
+      }
+  }
+
+  const castBio = getBio(person.biography)
+  console.log(castBio)
+
   const userAge = getAge(person.birthday)
-  console.log(userAge, 'userAge')
 
   if (isEmpty) return emptyData()
   else {
     return (
       <Fragment>
-        <div className='details ms-5 me-5'>
+        <div className='person ms-5 me-5'>
           <Container fluid className='my-5'>
             <Row className='align-items-start'>
               <Col xs={12} md={2}>
-                <div className='details__image-title'>
+                <div className='person__image-title'>
                   <img
-                    className='shadow rounded'
+                    className='shadow rounded'                   
                     src={`${poster_url}${person.profile_path}`}
-                    alt=''
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null // prevents looping
+                    currentTarget.src = userPlaceholder
+                  }}
                   />
                 </div>
-                <div className='details__image-bg'>
+                <div className='person__image-bg'>
                   <img src={`${BACKDROP_url}${person.profile_path}`} alt='' />
-                  <div className='details__image-overlay'></div>
+                  <div className='person__image-overlay'></div>
                 </div>
               </Col>
               <Col xs={12} md={8}>
@@ -117,7 +140,7 @@ const CastInfo = () => {
                 <Container>
                   <Row className='align-items-start'>
                     <Col xs={12} md={3}>
-                      <div className='details__controls'>
+                      <div className='person__controls'>
                         <Stack direction='horizontal' gap={2}>
                           <div className='consensus'>
                             <div className='consensus__outer_ring'>
@@ -139,7 +162,15 @@ const CastInfo = () => {
           <Container fluid>
             <Row>
               <Col xs={12} md={8}>
-                <p className='details__info--text'>{person.biography}</p>
+                {/* biography */}
+                {/* {castBio !== undefined ? <Biography limit={200}>{castBio}</Biography> : 'No Biography Available test'} */}
+                
+                <div id="readMore" className='show'>
+                    {castBio}
+                </div>
+                
+                  
+                
               </Col>
             </Row>
           </Container>

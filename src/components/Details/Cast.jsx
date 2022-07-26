@@ -71,7 +71,7 @@ const Cast = () => {
         {castCredits.cast.map(cast => (
           <div className='slider__wrapper castImage' key={nanoid()}>
             <div className='slider__item'>
-              <Link className='text-white' to={`/cast/${cast.id}`}>
+              <Link className='text-white' to={`/person/${cast.id}`}>
                 <img
                   style={{ minHeight: 200 }}
                   className='slider__img hoverEffect'
