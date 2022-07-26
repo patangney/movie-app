@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 
 const Biography = ({ limit, children }) => {
   const [isReadMoreShown, setReadMoreShown] = useState(false)
-  const [hideButton, setHideButton] = useState(false)
+  
   
   const toggleReadMore = () => {
     setReadMoreShown(prevState => !prevState)

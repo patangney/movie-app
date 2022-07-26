@@ -18,8 +18,7 @@ const CastInfo = () => {
   const params = useParams()
   const data = GetMovieDataById(params.id, useGetPeopleDetailsQuery)
   const person = data ? data : []
-  console.log(typeof(person.biography), 'person')
-
+  
   const isEmpty = Object.keys(person).length === 0
 
   const emptyData = () => {
@@ -47,9 +46,9 @@ const CastInfo = () => {
 
   const userPopularityAbs = Math.round(Math.abs(person.popularity))
 
-  const getAge = date => {
-    const today = new Date()
-    const birthDate = new Date(date)
+  const getAge = (dateToday, dateOfBirth) => {
+    const today = new Date(dateToday)
+    const birthDate = new Date(dateOfBirth)
     let age = today.getFullYear() - birthDate.getFullYear()
     const m = today.getMonth() - birthDate.getMonth()
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -59,25 +58,33 @@ const CastInfo = () => {
   }
 
   const getBio = bio => {
-    if (typeof bio === 'string' && bio.trim().length === 0 ||  bio === null || bio === undefined) {
-        const bioInfo = document.getElementById('readMore')
-        console.log(bioInfo, 'bioInfo')
+    if (
+      (typeof bio === 'string' && bio.trim().length === 0) ||
+      bio === null ||
+      bio === undefined
+    ) {
+      const bioInfo = document.getElementById('readMore')
+      console.log(bioInfo, 'bioInfo')
       return 'No Biography Available'
-    } 
-
-    if (typeof bio === 'string' && bio.trim().length > 0 && bio.trim().length < 200) {
-      return bio
     }
 
-    else {
-        return <Biography limit={200}>{bio}</Biography>
-      }
+    if (
+      typeof bio === 'string' &&
+      bio.trim().length > 0 &&
+      bio.trim().length < 200
+    ) {
+      return bio
+    } else {
+      return <Biography limit={200}>{bio}</Biography>
+    }
   }
 
-  const castBio = getBio(person.biography)
-  console.log(castBio)
+  const todayDate = new Date()
 
-  const userAge = getAge(person.birthday)
+  const castBio = getBio(person.biography)
+  const userAge = getAge(todayDate, person.birthday)
+  const userDeathAge = getAge(person.deathday, person.birthday)
+  console.log(userDeathAge, 'userDeathAge')
 
   if (isEmpty) return emptyData()
   else {
@@ -89,12 +96,12 @@ const CastInfo = () => {
               <Col xs={12} md={2}>
                 <div className='person__image-title'>
                   <img
-                    className='shadow rounded'                   
+                    className='mw-90 mh-100 shadow rounded'
                     src={`${poster_url}${person.profile_path}`}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null // prevents looping
-                    currentTarget.src = userPlaceholder
-                  }}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null // prevents looping
+                      currentTarget.src = userPlaceholder
+                    }}
                   />
                 </div>
                 <div className='person__image-bg'>
@@ -106,9 +113,89 @@ const CastInfo = () => {
                 <Stack direction='horizontal' gap={1}>
                   <h1 className='fs-1'>{person.name}</h1>
                 </Stack>
-                <Stack direction='horizontal' gap={1}>
-                  <h5 className='fs-5'>
-                    {' '}
+                <Stack direction='vertical' gap={1}>
+                  {person.birthday !== null && person.birthday !== undefined ? (
+                    <Fragment>
+                      {person.deathday === null ||
+                      person.deathday === undefined ? (
+                        <h5>
+                          Age <span className='text-light'>{userAge}</span>
+                        </h5>
+                      ) : (
+                        ''
+                      )}
+
+                      <h5>
+                        Birthday{' '}
+                        <span className='text-light'>
+                          <Moment format='MMMM Do, YYYY'>
+                            {person.birthday}
+                          </Moment>
+                        </span>
+                      </h5>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <span className='text-muted'>Age Not Available</span>
+                    </Fragment>
+                  )}
+
+                  {person.deathday !== null && person.deathday !== undefined ? (
+                    <Fragment>
+                      <h5>
+                        Died{' '}
+                        <span className='text-light'>
+                          <Moment format='MMMM Do, YYYY'>
+                            {person.deathday}
+                          </Moment>{' '}
+                          ({userDeathAge} Years old)
+                        </span>
+                      </h5>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <span className='text-muted'></span>
+                    </Fragment>
+                  )}
+
+                  {person.place_of_birth !== null &&
+                  person.place_of_birth !== undefined ? (
+                    <Fragment>
+                      <h5>
+                        Place of Birth{' '}
+                        <span className='text-light'>
+                          {person.place_of_birth}
+                        </span>
+                      </h5>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <span className='text-muted'>
+                        Place of Birth Not Available
+                      </span>
+                    </Fragment>
+                  )}
+
+                  {person.known_for_department !== null &&
+                  person.known_for_department !== undefined ? (
+                    <Fragment>
+                      <h5>
+                        Known For{' '}
+                        <span className='text-light'>
+                          {person.known_for_department}
+                        </span>
+                      </h5>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <span className='text-muted'>
+                        Known For Not Available
+                      </span>
+                    </Fragment>
+                  )}
+
+                  {/* <h5 className='fs-5'>
+                
                     Born:{' '}
                     <span className='m-1'>
                       <Moment format='DD MMM YYYY'>{person.birthday}</Moment>
@@ -121,19 +208,7 @@ const CastInfo = () => {
                     </h5>
                   ) : (
                     <h5>({userAge} Years Old)</h5>
-                  )}
-                </Stack>
-
-                <Stack direction='horizontal' gap={1}>
-                  <h5 className='fs-5 '>
-                    Place of Birth: {person.place_of_birth}
-                  </h5>
-                </Stack>
-                <Stack direction='horizontal' gap={1}>
-                  <h5 className='fs-5'>
-                    Known for:{' '}
-                    <span className='fs-5'>{person.known_for_department}</span>
-                  </h5>
+                  )} */}
                 </Stack>
 
                 {/* doughnut chart */}
@@ -164,13 +239,10 @@ const CastInfo = () => {
               <Col xs={12} md={8}>
                 {/* biography */}
                 {/* {castBio !== undefined ? <Biography limit={200}>{castBio}</Biography> : 'No Biography Available test'} */}
-                
-                <div id="readMore" className='show'>
-                    {castBio}
+
+                <div id='readMore' className='show'>
+                  {castBio}
                 </div>
-                
-                  
-                
               </Col>
             </Row>
           </Container>

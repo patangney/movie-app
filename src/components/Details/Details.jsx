@@ -16,23 +16,50 @@ import Stack from 'react-bootstrap/Stack'
 import CurrencyFormat from 'react-currency-format'
 import Moment from 'react-moment'
 
-
 import ModalVideo from 'react-modal-video'
+
 
 const Details = () => {
   ChartJS.register(ArcElement)
   const [show, setShow] = useState(false)
   const [isOpen, setOpen] = useState(false)
+ 
   const params = useParams()
   const data = GetMovieDataById(params.id, useGetMovieByIdQuery)
   const movie = data ? data : []
 
   const trailerData = GetMovieDataById(params.id, useGetMovieVideoQuery)
-  console.log(trailerData, 'trailerData')
-  const trailer = trailerData ? trailerData : []
-  const key = trailer.results ? trailer.results[0].key : ''
+  const trailer = trailerData.results ? trailerData.results : [] //set fallback to prevent crash
+  console.log(trailer, 'trailer')
+  const copyTrailer = trailer.slice()
+  console.log(copyTrailer, 'copyTrailer')
+  const isEmptyTrailer = Object.keys(copyTrailer).length === 0
+  console.log(trailer, 'trailer object', isEmptyTrailer)
+
+  let getKey 
+
+  if (isEmptyTrailer) {
+    copyTrailer.push({
+      actualKey: 'dQw4w9WgXcQ'
+    })
+    getKey = copyTrailer.slice(-1).pop()
+
+  } else {
+    copyTrailer.push({
+      actualKey: trailer[0].key
+    })
+    getKey = copyTrailer.slice(-1).pop()
+  }
+
+
+
+  
 
   const isEmpty = Object.keys(movie).length === 0
+
+ 
+
+  
 
   const emptyData = () => {
     return (
@@ -68,11 +95,13 @@ const Details = () => {
   else {
     return (
       <Fragment>
+        {/* <ModalVideo /> */}
+
         <ModalVideo
           channel='youtube'
           autoplay
           isOpen={isOpen}
-          videoId={key}
+          videoId={getKey.actualKey}
           onClose={() => setOpen(false)}
         />
 

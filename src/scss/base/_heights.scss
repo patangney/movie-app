@@ -1,2 +1,32 @@
 $enable-negative-margins: true;
 $header-height: 70px;
+
+$mw-90: 90% ;
+$mw-80: 80% ;
+$mw-70: 70% ;
+$mw-60: 60% ;
+$mw-50: 50% ;
+$mw-40: 40% ;
+$mw-30: 30% ;
+
+.mw-90 {
+  width: $mw-90 !important;
+}
+.mw-80 {
+  width: $mw-80 !important;
+}
+.mw-70 {
+  width: $mw-70 !important;
+}
+.mw-60 {
+  width: $mw-60 !important;
+}
+.mw-50 {
+  width: $mw-50 !important;
+}
+.mw-40 {
+  width: $mw-40 !important;
+}
+.mw-30 {
+  width: $mw-30 !important;
+}
