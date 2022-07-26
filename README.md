@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-API was created using [The Movie Database](https://www.themoviedb.org/). Sign up for an account (free) to be able to create your own API.
+API was created using [The Movie Database](https://developers.themoviedb.org/3/getting-started/introduction). Sign up for an account (free) to be able to create your own API.
 Add this API to your own `.env.local` to be able to run this application.
 Queries are managed by Redux Toolkit - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview). It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
 
