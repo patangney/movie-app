@@ -21,7 +21,7 @@ import ModalVideo from 'react-modal-video'
 
 const Details = () => {
   ChartJS.register(ArcElement)
-  const [show, setShow] = useState(false)
+  
   const [isOpen, setOpen] = useState(false)
  
   const params = useParams()
