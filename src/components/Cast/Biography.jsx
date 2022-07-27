@@ -18,10 +18,12 @@ const Biography = ({ limit, children }) => {
       <Container fluid className='mt-n2'>
         <Row>
           <Col>
-            {isReadMoreShown ? children : children.slice(0, limit)}
+            <p>{isReadMoreShown ? children : children.slice(0, limit)}</p>
+            
             <Button id='readMore' className='btn btn-small' onClick={toggleReadMore} variant='primary' size='sm'>
                 {isReadMoreShown ? 'Read Less' : 'Read More'}
-            </Button>{' '}
+            </Button>
+            
             <div className="mb-2"></div>
           </Col>
         </Row>
