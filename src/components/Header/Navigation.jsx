@@ -16,7 +16,8 @@ function Navigation () {
             <Navbar.Brand href='/'>
               <img
                 src={LogoWhite}
-                width='150'
+                width='50'
+                style={{marginRight: 50, marginLeft: 20}}
                 className='d-inline-block align-top mr-5'
               />
             </Navbar.Brand>
