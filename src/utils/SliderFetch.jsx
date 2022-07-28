@@ -15,6 +15,7 @@ const SliderFetch = (queryApi, sliderSetting) => {
 
   if (status === 'fulfilled') {
     const isEmpty = Object.keys(data).length === 0
+   
 
     const BACKDROP_url =
       'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
