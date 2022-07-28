@@ -13,15 +13,17 @@ const Collection = () => {
   const params = useParams()
   const img_url = `https://image.tmdb.org/t/p/w1440_and_h320_multi_faces/`
 
-  const { data: getCollection, status } = GenerateDetailsWithId(
+  const { data, status } = GenerateDetailsWithId(
     params.id,
     useGetMovieByIdQuery
   )
+  console.log(data.belongs_to_collection, status, 'custom hook get collection details')
 
   if (status === 'fulfilled') {
-    let movieCollection = getCollection.belongs_to_collection ? getCollection.belongs_to_collection : {} //If there is no collection, return an empty object 
+    let movieCollection = data.belongs_to_collection ? data.belongs_to_collection : {} //If there is no collection, return an empty object 
     const isEmpty = Object.keys(movieCollection).length === 0
     console.log(movieCollection, 'getCollection')
+    const backupLink = `${img_url}${movieCollection.poster_path}`
 
     const emptyCollectionObj = () => {
       return (
@@ -42,7 +44,11 @@ const Collection = () => {
                 <Col xs={12} md={12}>
                   <Card className='bg-dark text-white'>
                     <Card.Img
-                      src={`${img_url}${movieCollection.backdrop_path} || ${img_url}${movieCollection.poster_path}`} //If there is no backdrop_path, use the poster_path
+                      src={`${img_url}${movieCollection.backdrop_path}`}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null // prevents looping
+                        currentTarget.src = backupLink
+                      }}
                       alt={movieCollection.name}
                     />
                     <Card.ImgOverlay className='bg-overlay'>
