@@ -4,7 +4,7 @@ import {
   useGetMovieVideoQuery
 } from '../../services/themoviedbAPI'
 import { Chart as ChartJS, ArcElement } from 'chart.js'
-import { GetMovieDataById } from '../../utils/DataFetch'
+import { GenerateDetailsWithId } from '../../utils/DataFetch'
 import { nanoid } from '@reduxjs/toolkit'
 import { Doughnut } from 'react-chartjs-2'
 import { useParams } from 'react-router-dom'
@@ -15,84 +15,52 @@ import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
 import CurrencyFormat from 'react-currency-format'
 import Moment from 'react-moment'
-
+import Spinner from '../Spinner/Spinner'
 import ModalVideo from 'react-modal-video'
-
 
 const Details = () => {
   ChartJS.register(ArcElement)
-  
-  const [isOpen, setOpen] = useState(false)
- 
   const params = useParams()
-  const data = GetMovieDataById(params.id, useGetMovieByIdQuery)
-  const movie = data ? data : []
 
-  const trailerData = GetMovieDataById(params.id, useGetMovieVideoQuery)
-  const trailer = trailerData.results ? trailerData.results : [] //set fallback to prevent crash
-  console.log(trailer, 'trailer')
-  const copyTrailer = trailer.slice()
-  console.log(copyTrailer, 'copyTrailer')
-  const isEmptyTrailer = Object.keys(copyTrailer).length === 0
-  console.log(trailer, 'trailer object', isEmptyTrailer)
-
-  let getKey 
-
-  if (isEmptyTrailer) {
-    copyTrailer.push({
-      actualKey: 'dQw4w9WgXcQ'
-    })
-    getKey = copyTrailer.slice(-1).pop()
-
-  } else {
-    copyTrailer.push({
-      actualKey: trailer[0].key
-    })
-    getKey = copyTrailer.slice(-1).pop()
-  }
-
-
-
-  
-
-  const isEmpty = Object.keys(movie).length === 0
-
- 
-
-  
-
-  const emptyData = () => {
-    return (
-      <Fragment>
-        <p>No Data</p>
-      </Fragment>
-    )
-  }
-
-  const BACKDROP_url =
-    'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
-  const poster_url = 'https://image.tmdb.org/t/p/w500'
-
-  const userRatingAbs = Math.round(
-    Math.abs(movie.vote_average, 10 - movie.vote_average)
+  const [isOpen, setOpen] = useState(false)
+  const { data: movie, status: movieStatus } = GenerateDetailsWithId(
+    params.id,
+    useGetMovieByIdQuery
+  )
+  const { data: videos, status: videoStatus } = GenerateDetailsWithId(
+    params.id,
+    useGetMovieVideoQuery
   )
 
-  // Convert Date object to string
-  const movieDate = movie.release_date
-  //User Rating
-  const userRating = {
-    datasets: [
-      {
-        data: [movie.vote_average, 10 - movie.vote_average],
-        backgroundColor: ['#9BC53D', 'rgba(0, 0, 0, 0.1)'],
-        borderColor: ['#9BC53D', 'rgba(0, 0, 0, 0.2)'],
-        borderWidth: 0.5
-      }
-    ]
-  }
+  console.log(movie, movieStatus, 'custom hook movie details')
 
-  if (isEmpty) return emptyData()
-  else {
+  if (movieStatus === 'fulfilled' && videoStatus === 'fulfilled') {
+    //Check if there are any videos
+    const isEmptyTrailer = Object.keys(videos.results).length === 0
+    const key = isEmptyTrailer ? 'dQw4w9WgXcQ' : videos.results[0].key
+
+    const BACKDROP_url =
+      'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'
+    const poster_url = 'https://image.tmdb.org/t/p/w500'
+
+    const userRatingAbs = Math.round(
+      Math.abs(movie.vote_average, 10 - movie.vote_average)
+    )
+
+    // Convert Date object to string
+    const movieDate = movie.releaseDate
+
+    //User Rating
+    const userRating = {
+      datasets: [
+        {
+          data: [movie.vote_average, 10 - movie.vote_average],
+          backgroundColor: ['#9BC53D', 'rgba(0, 0, 0, 0.1)'],
+          borderColor: ['#9BC53D', 'rgba(0, 0, 0, 0.2)'],
+          borderWidth: 0.5
+        }
+      ]
+    }
     return (
       <Fragment>
         {/* <ModalVideo /> */}
@@ -101,10 +69,9 @@ const Details = () => {
           channel='youtube'
           autoplay
           isOpen={isOpen}
-          videoId={getKey.actualKey}
+          videoId={key}
           onClose={() => setOpen(false)}
         />
-
         <div className='details ms-5 me-5'>
           <Container fluid className='my-5'>
             <Row className='align-items-start'>
@@ -242,6 +209,8 @@ const Details = () => {
         </div>
       </Fragment>
     )
+  } else {
+    return <Spinner />
   }
 }
 

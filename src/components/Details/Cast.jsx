@@ -16,7 +16,8 @@ const Cast = () => {
     data,
     isLoading,
     isFetching,
-    isError
+    isError,
+    isSuccess
   } = movieAPI.endpoints.getCredits.useQuery(params.id)
   let castCredits = data ? data : {}
 
