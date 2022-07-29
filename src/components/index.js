@@ -6,5 +6,6 @@ export {default as Details} from './Details/Details'
 export {default as CollectionDetails} from './Collection/CollectionDetails'
 export {default as Viewers} from './Home/Viewers'
 export {default as CastInfo} from './Cast/CastInfo'
-export {default as ViewNetwork} from './Pages/ViewNetwork'
+export {default as ViewNetworkTV} from './Pages/ViewNetworkTV'
+export {default as SeriesDetails} from './TV/SeriesDetails'
 
