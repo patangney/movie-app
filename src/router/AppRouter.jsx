@@ -1,6 +1,6 @@
 import React, { Fragment} from 'react'
 import { Routes, Route } from 'react-router-dom'
-import {Home, Details, CollectionDetails, CastInfo, ViewNetworkTV, SeriesDetails} from '../components/index.js'
+import {Home, Details, CollectionDetails, CastInfo, ViewNetworkTV, SeriesDetails, CompanyTvSeries} from '../components/index.js'
 
 const AppRouter = () => {
   return (
@@ -12,6 +12,7 @@ const AppRouter = () => {
             <Route path="/person/:id" element={<CastInfo />} />
             <Route path="/network/:id" element={<ViewNetworkTV />} />
             <Route path="/tv/:id" element={<SeriesDetails />} />
+            <Route path="/company/:id" element={<CompanyTvSeries />} />
 
         </Routes>
     </Fragment>

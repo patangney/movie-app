@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 // Import css files
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import userPlaceholder from '../assets/placeholder/moviePlaceholder.png'
+import moviePlaceholder from '../assets/placeholder/moviePlaceholder.png'
 import { GenerateDetailsWithId } from './DataFetch'
 import Spinner from '../components/Spinner/Spinner'
 
@@ -43,10 +43,10 @@ const SliderFetchWithId = (id, queryApi, sliderSetting) => {
                       <img
                         style={{ minHeight: 200 }}
                         className='slider__img hoverEffect'
-                        src={`${BACKDROP_url}${sliderInfo.backdrop_path}`}
+                        src={`${BACKDROP_url}${sliderInfo.backdrop_path}` || moviePlaceholder}
                         onError={({ currentTarget }) => {
                           currentTarget.onerror = null // prevents looping
-                          currentTarget.src = userPlaceholder
+                          currentTarget.src = moviePlaceholder
                         }}
                         alt={sliderInfo.title}
                       />

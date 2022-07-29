@@ -24,10 +24,18 @@ $transparent: rgba(255, 255, 255, 0);
 $white: #fff;
 $black: #000;
 $bg-overlay: rgba(15, 33, 45, 0.461);
+$bg-overlay-light: rgba(165, 174, 179, 0.238);
+
 
 .bg-overlay {
   background-color: $bg-overlay;
 }
+
+.bg-overlay-light {
+  background-color: $bg-overlay-light;
+}
+
+
 
 $theme-colors: (
     "primary": $primary,

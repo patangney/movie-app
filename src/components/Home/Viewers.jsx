@@ -13,7 +13,7 @@ const Viewers = () => {
           <div className='viewers'>
             <div className='viewers__container'>
               <div className='viewers__wrapper'>
-              <Link to={`/network/2739`}>
+              <Link to={`/network/2739`}> {/* 2739 = disney+ */}
                 <img src='/assets/images/viewers-disney.png' alt='' />
                 <video
                   autoPlay={true}
@@ -26,6 +26,7 @@ const Viewers = () => {
                 </Link>
               </div>
               <div className='viewers__wrapper'>
+              <Link to={`/company/420`}> {/* /company/420 MARVEL STUDIOS*/}
                 <img src='/assets/images/viewers-marvel.png' alt='' />
                 <video
                   autoPlay={true}
@@ -35,8 +36,10 @@ const Viewers = () => {
                 >
                   <source src='/assets/videos/marvel.mp4' type='video/mp4' />
                 </video>
+                </Link>
               </div>
               <div className='viewers__wrapper'>
+              <Link to={`/network/43`}> {/* /network/43 = National Geographic */}
                 <img src='/assets/images/viewers-national.png' alt='' />
                 <video
                   autoPlay={true}
@@ -46,8 +49,10 @@ const Viewers = () => {
                 >
                   <source src='/assets/videos/national.mp4' type='video/mp4' />
                 </video>
+                </Link>
               </div>
               <div className='viewers__wrapper'>
+              <Link to={`/company/3`}> {/* /company/3 = Pixar */}
                 <img src='/assets/images/viewers-pixar.png' alt='' />
                 <video
                   autoPlay={true}
@@ -57,8 +62,10 @@ const Viewers = () => {
                 >
                   <source src='/assets/videos/pixar.mp4' type='video/mp4' />
                 </video>
+                </Link>
               </div>
               <div className='viewers__wrapper'>
+              <Link to={`/network/2739`}>
                 <img src='/assets/images/viewers-starwars.png' alt='' />
                 <video
                   autoPlay={true}
@@ -68,8 +75,10 @@ const Viewers = () => {
                 >
                   <source src='/assets/videos/starwars.mp4' type='video/mp4' />
                 </video>
+                </Link>
               </div>
               <div className='viewers__wrapper'>
+              <Link to={`/network/4697`}>
                 <img src='/assets/images/viewers-star.png' alt='' />
                 <video
                   autoPlay={true}
@@ -79,6 +88,7 @@ const Viewers = () => {
                 >
                   <source src='/assets/videos/star.mp4' type='video/mp4' />
                 </video>
+                </Link>
               </div>
             </div>
           </div>

@@ -58,11 +58,19 @@ export const movieAPI = createApi({
     }),
     getNetworkTv: builder.query({
       query: (networkId) =>
-        `discover/tv/?api_key=${API_KEY}&language=en-US&with_networks=${networkId}&sort_by=popularity.desc`
+        `discover/tv/?api_key=${API_KEY}&language=en-US&with_networks=${networkId}&sort_by=popularity.desc&page=1`
+    }),
+    getCompanyTvSeries: builder.query({
+      query: (companyId) =>
+        `discover/tv/?api_key=${API_KEY}&language=en-US&with_companies=${companyId}&sort_by=popularity.desc&page=1`
     }),
     getTvSeriesDetails: builder.query({
       query: (tvSeriesId) =>
         `tv/${tvSeriesId}?api_key=${API_KEY}&language=en-US`
+    }),
+    getStarWarsTv: builder.query({
+      query: () =>
+        `search/tv?query=star%20wars?api_key=${API_KEY}&language=en-US`
     }),
     
   })
@@ -86,5 +94,7 @@ export const {
   useGetAnimationMoviesQuery,
   useGetPeopleDetailsQuery,
   useGetNetworkTvQuery,
-  useGetTvSeriesDetailsQuery
+  useGetTvSeriesDetailsQuery,
+  useGetCompanyTvSeriesQuery,
+  useGetStarWarsTvQuery
 } = movieAPI

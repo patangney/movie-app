@@ -8,4 +8,5 @@ export {default as Viewers} from './Home/Viewers'
 export {default as CastInfo} from './Cast/CastInfo'
 export {default as ViewNetworkTV} from './Pages/ViewNetworkTV'
 export {default as SeriesDetails} from './TV/SeriesDetails'
+export {default as CompanyTvSeries} from './Company/TvSeries'
 
