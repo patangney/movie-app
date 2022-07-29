@@ -56,6 +56,11 @@ export const movieAPI = createApi({
       query: (personId) =>
         `person/${personId}?api_key=${API_KEY}&language=en-US`
     }),
+    getNetworkTv: builder.query({
+      query: (networkId) =>
+        `discover/tv/?api_key=${API_KEY}&language=en-US&with_networks=${networkId}&sort_by=popularity.desc`
+    })
+    
   })
 })
 
@@ -75,5 +80,6 @@ export const {
   useGetUpcomingMoviesQuery,
   useGetHorrorMoviesQuery,
   useGetAnimationMoviesQuery,
-  useGetPeopleDetailsQuery
+  useGetPeopleDetailsQuery,
+  useGetNetworkTvQuery
 } = movieAPI

@@ -51,11 +51,12 @@ const SliderFetch = (queryApi, sliderSetting) => {
                         }}
                         alt={sliderInfo.title}
                       />
-                    </Link>
-
-                    <h5 className='slider__title--box'>
+                      <h5 className='slider__title--box'>
                       {sliderInfo.title || sliderInfo.name}
                     </h5>
+                    </Link>
+
+                    
                   </div>
                 </div>
               ))}
